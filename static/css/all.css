@@ -1,0 +1,52 @@
+body {
+	background: rgb(62, 97, 150);
+	  font-family: Sans-Serif;
+
+}
+
+.allcontent {
+	max-width: 400px;
+ 	 margin: auto;
+	background: rgb(227, 238, 255);
+	border-radius: 20px;
+	padding: 20px;
+	min-height: 400px;
+}
+
+.transcriptSection {
+	border-radius: 20px;
+	padding: 20px;
+	background: rgb(247, 248, 255);
+	min-height: 200px;
+}
+
+button {
+  background-color: rgb(62, 97, 150);
+  border-radius: 10px;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
+
+#timestamp{
+font-size: 20px;
+margin-left: 20px;
+font-family: monospace;
+}
+#recordingtimestamp{
+font-size: 20px;
+margin-bottom: 20px;
+font-family: monospace;
+}
+
+.newvm{
+	margin: 20px;
+}
+
+#playPauseButton{
+	min-width: 80px;
+}

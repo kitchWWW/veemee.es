@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>you have a vm!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzicato/0.6.4/Pizzicato.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/css/all.css">
+</head>
+
+<body>
+    <div class="allcontent">
+        <h1>vm</h1>
+        <div id="controls">
+            <button id="restartButton">restart</button>
+            <button id="playPauseButton">playpause</button>
+            <span id="timestamp">2:30</span>
+        </div>
+        <div class="transcriptBit">
+            <br>
+            <div class="transcriptSection" id="transcriptSection"></div>
+            <center>
+                <button class="newvm" onclick="replyButton()">send new vm</button>
+            </center>
+        </div>
+    </div>
+    <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
+    <script src="/static/js/view.js"></script>
+</body>
+
+</html>
