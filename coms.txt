@@ -1,0 +1,2 @@
+python main.py
+nohup python main.py &
