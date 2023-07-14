@@ -2,7 +2,7 @@ from flask import Flask
 from flask import jsonify
 from flask import request
 from flask import render_template
-import transcribe 
+# import transcribe 
 import random
 import string
 
@@ -24,7 +24,8 @@ def uploadAudio():
     messageid = genID()
     with open('./static/messages/'+messageid+'.wav', 'wb') as audio:
         f.save(audio)
-    transcribe.transcribe(messageid)
+    # transcribe.async_transcribe(messageid)
+    os.system("python transcribe.py "+messageid+" &")
     print('file uploaded successfully')
     return jsonify({'messageid':messageid})
 
