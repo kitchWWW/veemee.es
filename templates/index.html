@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Simple Recorder.js demo with record, stop and pause - addpipe.com</title>
+    <title>veemee!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/all.css">
 </head>
@@ -12,15 +12,14 @@
     <div class="allcontent">
         <h1>vm</h1>
         <div id="recordingtimestamp">2:30</div>
+        <canvas id="canvasss" width="250" height="50"></canvas>
         <div id="controls">
             <button id="recordButton">record</button>
             <button id="pauseButton">pause</button>
             <button id="stopButton">finish & upload</button>
         </div>
         <div id="uploadingDiv">uploading...</div>
-        <div id="successDiv">uploaded! <span id="linkidDiv"></span></div>
-        <div id="coppiedSuccessDiv">link coppied to clipboard!</div>
-        <div id="coppiedFailureDiv">ERROR: link <b>NOT</b> coppied to clipboard!!</div>
+        <div id="successDiv">uploaded!<br>share this link:<br><br><a id="linkidDiv"></a><br><br><button onclick="share()">send veemee</button></div>
     </div>
     <script src="https://cdn.rawgit.com/mattdiamond/Recorderjs/08e7abd9/dist/recorder.js"></script>
     <script src="/static/js/app.js"></script>

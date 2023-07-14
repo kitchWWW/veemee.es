@@ -1,3 +1,74 @@
+function averageInRange(array, i, j) {
+  // Ensure valid range
+  if (i < 0 || j >= array.length || i > j) {
+    throw new Error('Invalid range');
+  }
+
+  // Calculate sum of elements in the range
+  let sum = 0;
+  for (let index = i; index <= j; index++) {
+    sum += array[index];
+  }
+
+  // Calculate the average
+  const rangeLength = j - i + 1;
+  const average = sum / rangeLength;
+
+  return average;
+}
+
+
+/**
+ * Copy a string to clipboard
+ * @param  {String} string         The string to be copied to clipboard
+ * @return {Boolean}               returns a boolean correspondent to the success of the copy operation.
+ * @see https://stackoverflow.com/a/53951634/938822
+ */
+function copyToClipboard(string) {
+  let textarea;
+  let result;
+
+  try {
+    textarea = document.createElement('textarea');
+    textarea.setAttribute('readonly', true);
+    textarea.setAttribute('contenteditable', true);
+    textarea.style.position = 'fixed'; // prevent scroll from jumping to the bottom when focus is set.
+    textarea.value = string;
+
+    document.body.appendChild(textarea);
+
+    textarea.focus();
+    textarea.select();
+
+    const range = document.createRange();
+    range.selectNodeContents(textarea);
+
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+
+    textarea.setSelectionRange(0, textarea.value.length);
+    result = document.execCommand('copy');
+  } catch ( err ) {
+    console.error(err);
+    result = null;
+  } finally {
+    document.body.removeChild(textarea);
+  }
+
+  // manual copy fallback using prompt
+  if (!result) {
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+    const copyHotkey = isMac ? '⌘C' : 'CTRL+C';
+    result = prompt(`Press ${copyHotkey}`, string); // eslint-disable-line no-alert
+    if (!result) {
+      return false;
+    }
+  }
+  return true;
+}
+
+
 function formatAsTime(secs) {
   var sec_num = parseInt(secs, 10); // don't forget the second param
   var hours = Math.floor(sec_num / 3600);
@@ -28,14 +99,10 @@ var pauseButton = document.getElementById("pauseButton");
 var uploadingDiv = document.getElementById("uploadingDiv");
 var successDiv = document.getElementById("successDiv");
 var linkidDiv = document.getElementById("linkidDiv");
-var coppiedSuccessDiv = document.getElementById("coppiedSuccessDiv");
-var coppiedFailureDiv = document.getElementById("coppiedFailureDiv");
 var timestampDiv = document.getElementById("recordingtimestamp")
 
 uploadingDiv.style.display = "none"
 successDiv.style.display = "none"
-coppiedSuccessDiv.style.display = "none"
-coppiedFailureDiv.style.display = "none"
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
@@ -112,6 +179,40 @@ function startRecording() {
 
     /* use the stream */
     input = audioContext.createMediaStreamSource(stream);
+    var bufferSize = 1024
+    const canvas = document.getElementById("canvasss");
+    const ctx = canvas.getContext("2d");
+    var scriptNode = audioContext.createScriptProcessor(bufferSize, 1, 1); // Buffer size, input channels, output channels
+    console.log("hfeiuwahfliuaweh")
+    scriptNode.onaudioprocess = function(event) {
+      // Get the input audio buffer
+      var inputBuffer = event.inputBuffer;
+
+      // Get the channel data (assuming mono audio)
+      var inputData = inputBuffer.getChannelData(0);
+
+      ctx.strokeStyle = "black";
+      ctx.clearRect(0, 0, 250, 50)
+
+      // Print the data to the console
+      if (isRecording) {
+        console.log("here?")
+        ctx.beginPath();
+        // console.log(inputData);
+        var numbSections = 50
+        var sectionSize = bufferSize / numbSections
+        ctx.moveTo(0, 25);
+        for (var i = 0; i < numbSections; i++) {
+          ctx.lineTo(i * 4, 25 + inputData[Math.round(i * sectionSize)] * 20);
+        }
+        ctx.stroke();
+      }
+
+    };
+
+    input.connect(scriptNode);
+    scriptNode.connect(audioContext.destination);
+
 
     /* 
         Create the Recorder object and configure to record mono sound (1 channel)
@@ -194,7 +295,7 @@ function stopRecording() {
   //tell the recorder to stop the recording
   rec.stop();
   isRecording = false
-  timeSoFar = timeSoFar + (Date.now() - startTimeOfCurrentSection) / 1000
+  // timeSoFar = timeSoFar + (Date.now() - startTimeOfCurrentSection) / 1000
 
 
   //stop microphone access
@@ -204,7 +305,7 @@ function stopRecording() {
   rec.exportWAV(createDownloadLink);
 }
 
-
+var viewingURL
 function doUpload(blob, filename) {
   var xhr = new XMLHttpRequest();
   xhr.onload = function(e) {
@@ -213,18 +314,10 @@ function doUpload(blob, filename) {
       uploadingDiv.style.display = "none"
       successDiv.style.display = "block"
       res = JSON.parse(e.target.responseText)
-      linkidDiv.innerHTML = res['messageid']
       viewingURL = window.location.href + "view?id=" + res['messageid']
-      navigator.clipboard.writeText(viewingURL).then(
-        () => {
-          console.log("coppied!")
-          coppiedSuccessDiv.style.display = "block"
-        },
-        () => {
-          console.log("failed to copy to clipboard!!")
-          coppiedFailureDiv.style.display = "block"
-        }
-      );
+      linkidDiv.innerHTML = viewingURL
+      linkidDiv.href = viewingURL
+      copyToClipboard(viewingURL)
     }
   };
   var fd = new FormData();
@@ -237,4 +330,13 @@ function doUpload(blob, filename) {
 function createDownloadLink(blob) {
   var filename = new Date().toISOString();
   doUpload(blob, filename)
+}
+
+
+function share() {
+  navigator.share({
+    text: "yo, open this vm", // Text to be shared
+    url: viewingURL, // URL to be shared
+  // files: [] // An array of File objects to be shared
+  })
 }
