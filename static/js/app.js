@@ -196,6 +196,7 @@ function startRecording() {
 
       // Print the data to the console
       if (isRecording) {
+        var canvasWidth = canvas.width
         console.log("here?")
         ctx.beginPath();
         // console.log(inputData);
@@ -203,7 +204,7 @@ function startRecording() {
         var sectionSize = bufferSize / numbSections
         ctx.moveTo(0, 25);
         for (var i = 0; i < numbSections; i++) {
-          ctx.lineTo(i * 4, 25 + inputData[Math.round(i * sectionSize)] * 20);
+          ctx.lineTo(i * (canvasWidth / numbSections), 25 + inputData[Math.round(i * sectionSize)] * 20);
         }
         ctx.stroke();
       }

@@ -1,58 +1,123 @@
+html,
 body {
-	background: rgb(62, 97, 150);
-	  font-family: Sans-Serif;
+    background: rgb(62, 97, 150);
+    font-family: Sans-Serif;
+    height: 100%;
+    margin: 0;
+}
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 100%;
+    margin: auto;
+}
+
+
+.headerConfines {
+    width: 100%;
+    text-align: left;
+    margin: auto;
+    width: 400px;
+    max-height: 200px;
+}
+
+.contentBit {
+    margin: auto;
+    text-align: center;
+    min-height: 200px;
+    text-align: bottom;
+}
+
+.trailing {}
+
+
+.contentArea {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    flex-grow: 1;
+    background: rgb(247, 248, 255);
+    flex-direction: column;
 
 }
-h1{
-	margin-top: -10px;
+
+.bottombar {
+    padding: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background: rgb(217, 228, 255);
+    height: 100px;
 }
+
+.column {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row {
+    height: 50px;
+}
+
+.waveformCanvas {
+    padding-top: 100px;
+}
+
+h1 {
+    color: white;
+}
+
 .allcontent {
-	max-width: 400px;
- 	 margin: auto;
-	background: rgb(227, 238, 255);
-	border-radius: 20px;
-	padding: 20px;
-	min-height: 400px;
+    flex-grow: 1;
+    width: 400px;
+    margin: auto;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+
 }
 
 .transcriptSection {
-	border-radius: 20px;
-	padding: 20px;
-	background: rgb(247, 248, 255);
-	min-height: 200px;
+    text-align: left;
 }
 
 button {
-  background-color: rgb(62, 97, 150);
-  border-radius: 10px;
-  border: none;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
+    background-color: rgb(62, 97, 150);
+    border-radius: 10px;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
 }
 
-#timestamp{
-font-size: 20px;
-margin-left: 20px;
-font-family: monospace;
-  display: inline-block;
-
-}
-#recordingtimestamp{
-font-size: 20px;
-margin-bottom: 20px;
-font-family: monospace;
-  display: inline-block;
+#timestamp {
+    font-size: 20px;
+    margin-left: 20px;
+    font-family: monospace;
+    display: inline-block;
 
 }
 
-.newvm{
-	margin: 20px;
+.timestampArea {
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
 }
 
-#playPauseButton{
-	min-width: 80px;
+#recordingtimestamp {
+    font-size: 20px;
+    font-family: monospace;
 }

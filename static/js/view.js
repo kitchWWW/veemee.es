@@ -1,8 +1,6 @@
-var restartButton = document.getElementById("restartButton")
 var playPauseButton = document.getElementById("playPauseButton")
 var timestampDiv = document.getElementById("timestamp")
 
-restartButton.onclick = restartFunction
 playPauseButton.onclick = playPauseFunction
 
 const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -75,7 +73,7 @@ function updatePlaybackForTime(t) {
   audioDur = audioButNotForPlaying.duration
   timestampDiv.innerHTML = formatAsTime(t / 1000) + " / " + formatAsTime(audioDur)
   for (var i = 0; i < allBits.length; i++) {
-    if (allBits[i]['start'] > t) {
+    if (allBits[i]['start'] >= t) {
       allSpans[i].style.color = "rgb(62, 97, 150)";
     } else if (allBits[i]['end'] < t) {
       allSpans[i].style.color = "rgb(50, 50, 50)";
@@ -136,12 +134,6 @@ function updateButtonLabel() {
 }
 
 updateButtonLabel()
-
-function restartFunction() {
-  playSound(0, 0)
-  isPlaying = true
-  updateButtonLabel()
-}
 
 function playFrom(starting) {
   console.log(starting)
