@@ -3,7 +3,9 @@ body {
 	  font-family: Sans-Serif;
 
 }
-
+h1{
+	margin-top: -10px;
+}
 .allcontent {
 	max-width: 400px;
  	 margin: auto;
@@ -36,11 +38,15 @@ button {
 font-size: 20px;
 margin-left: 20px;
 font-family: monospace;
+  display: inline-block;
+
 }
 #recordingtimestamp{
 font-size: 20px;
 margin-bottom: 20px;
 font-family: monospace;
+  display: inline-block;
+
 }
 
 .newvm{

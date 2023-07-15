@@ -248,7 +248,7 @@ function pauseRecording() {
     rec.stop();
     isRecording = false
     timeSoFar = timeSoFar + (Date.now() - startTimeOfCurrentSection) / 1000
-    pauseButton.innerHTML = "record more";
+    pauseButton.innerHTML = "add";
     recordButton.disabled = true;
     stopButton.disabled = false;
     pauseButton.disabled = false
