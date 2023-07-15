@@ -19,12 +19,14 @@
                 <div class="contentBit">
                     <canvas class="waveformCanvas" id="canvasss" width="250" height="50"></canvas>
                     <br>
-                    <div id="uploadingDiv">uploading...</div>
-                    <div id="successDiv">uploaded!<br>share this link:
-                        <br><br>
-                        <a id="linkidDiv"></a>
-                        <br><br>
-                        <button onclick="share()">send veemee</button>
+                    <div id="resArea" class="noShowOnLoad">
+                        <div id="uploadingDiv">uploading...</div>
+                        <div id="successDiv">uploaded!<br>share this link:
+                            <br><br>
+                            <a id="linkidDiv"></a>
+                            <br><br>
+                            <button onclick="share()">send veemee</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,13 +34,13 @@
                 <div class="row">
                     <div class="column">&nbsp;</div>
                     <div class="column">&nbsp;<button id="recordButton">record</button>
-                        <button id="pauseButton">pause</button>
+                        <button id="pauseButton" class="noShowOnLoad">pause</button>
                     </div>
-                    <div class="column">&nbsp;<button id="stopButton">-></button>
+                    <div class="column">&nbsp;<button id="stopButton" class="noShowOnLoad">-></button>
                     </div>
                 </div>
                 <div class="timestampArea">
-                    <div id="recordingtimestamp">2:30</div>
+                    <div id="recordingtimestamp">- / -</div>
                 </div>
             </div>
         </div>

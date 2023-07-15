@@ -100,9 +100,11 @@ var uploadingDiv = document.getElementById("uploadingDiv");
 var successDiv = document.getElementById("successDiv");
 var linkidDiv = document.getElementById("linkidDiv");
 var timestampDiv = document.getElementById("recordingtimestamp")
+var resArea = document.getElementById("resArea")
 
 uploadingDiv.style.display = "none"
 successDiv.style.display = "none"
+resArea.style.display = "block"
 
 //add events to those 2 buttons
 recordButton.addEventListener("click", startRecording);
