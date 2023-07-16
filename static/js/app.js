@@ -238,7 +238,7 @@ function startRecording() {
     stopButton.disabled = true;
     pauseButton.disabled = true
 
-    recordButton.style.display = 'inline-block'
+    recordButton.style.display = 'block'
     stopButton.style.display = 'none'
     pauseButton.style.display = 'none'
   });
