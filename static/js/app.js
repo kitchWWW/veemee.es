@@ -192,9 +192,10 @@ function startRecording() {
 
       // Get the channel data (assuming mono audio)
       var inputData = inputBuffer.getChannelData(0);
+      var canvasHeight = 200
 
       ctx.strokeStyle = "black";
-      ctx.clearRect(0, 0, 250, 50)
+      ctx.clearRect(0, 0, 250, canvasHeight)
 
       // Print the data to the console
       if (isRecording) {
@@ -204,9 +205,9 @@ function startRecording() {
         // console.log(inputData);
         var numbSections = 50
         var sectionSize = bufferSize / numbSections
-        ctx.moveTo(0, 25);
+        ctx.moveTo(0, canvasHeight / 2);
         for (var i = 0; i < numbSections; i++) {
-          ctx.lineTo(i * (canvasWidth / numbSections), 25 + inputData[Math.round(i * sectionSize)] * 20);
+          ctx.lineTo(i * (canvasWidth / numbSections), (canvasHeight / 2) + inputData[Math.round(i * sectionSize)] * (canvasHeight / 2));
         }
         ctx.stroke();
       }

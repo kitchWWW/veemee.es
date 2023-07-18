@@ -7,6 +7,15 @@
     <title>veemee</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/static/css/all.css">
+    <script type="text/javascript">
+    if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+        console.log("hello localhost!")
+    } else {
+        if (location.protocol !== 'https:') {
+            location.replace(`https:${location.href.substring(location.protocol.length)}`);
+        }
+    }
+    </script>
 </head>
 
 <body>
@@ -17,7 +26,7 @@
         <div class="allcontent">
             <div class="contentArea">
                 <div class="contentBit">
-                    <canvas class="waveformCanvas" id="canvasss" width="250" height="50"></canvas>
+                    <canvas class="waveformCanvas" id="canvasss" width="250" height="200"></canvas>
                     <br>
                     <div id="resArea" class="noShowOnLoad">
                         <div id="uploadingDiv">uploading...</div>
