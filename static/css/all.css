@@ -58,6 +58,12 @@ body {
     text-align: center;
 }
 
+.columnCenter {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
 
 /* Clear floats after the columns */
 .row:after {
