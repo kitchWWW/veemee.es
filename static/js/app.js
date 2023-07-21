@@ -193,9 +193,10 @@ function startRecording() {
       // Get the channel data (assuming mono audio)
       var inputData = inputBuffer.getChannelData(0);
       var canvasHeight = 200
+      var canvasWidth = 200
 
       ctx.strokeStyle = "black";
-      ctx.clearRect(0, 0, 250, canvasHeight)
+      ctx.clearRect(0, 0, 200, canvasHeight)
 
       // Print the data to the console
       if (isRecording) {
