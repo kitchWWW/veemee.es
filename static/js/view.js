@@ -1,3 +1,5 @@
+baseURLofContent = "https://d36pz9lfc81izl.cloudfront.net/"
+
 var playPauseButton = document.getElementById("playPauseButton")
 var timestampDiv = document.getElementById("timestamp")
 
@@ -39,7 +41,8 @@ xhttp.onreadystatechange = function() {
     }
   }
 };
-xhttp.open("GET", "/static/messages/" + params.id + ".json", true);
+
+xhttp.open("GET", baseURLofContent + params.id + ".json", true);
 xhttp.send();
 
 
@@ -152,7 +155,7 @@ function playFrom(starting) {
 var sound = new Pizzicato.Sound({
   source: 'file',
   options: {
-    path: "/static/messages/" + params.id + ".wav"
+    path: baseURLofContent + params.id + ".wav"
   }
 }, function() {
   console.log('sound file loaded!');
@@ -160,7 +163,7 @@ var sound = new Pizzicato.Sound({
 
 // And then we also load up the audio file for the other one to get the durration oops
 
-var audioButNotForPlaying = new Audio("/static/messages/" + params.id + ".wav")
+var audioButNotForPlaying = new Audio(baseURLofContent + params.id + ".wav")
 
 sound.on('end', function() {
   isPlaying = false

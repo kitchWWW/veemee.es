@@ -80,6 +80,8 @@ def transcribe(messageId):
     doAndSay('sox ./static/messages/'+messageId+'.wav ./static/messages/'+messageId+'_norm.wav norm rate 44100')
     doAndSay('mv ./static/messages/'+messageId+'_norm.wav ./static/messages/'+messageId+'.wav')
     
+    os.system('python uploader.py ./static/messages/'+messageId+'.wav '+messageId+'.wav &')
+
     totalDurr = getdurr('./static/messages/'+messageId+'.wav')
     overallBits = []
     for i in range(int(totalDurr / chunkdurr) + 1):
@@ -100,6 +102,8 @@ def transcribe(messageId):
     outfd.write(json.dumps(bitsToUse))
     outfd.close()
     print("Saved full transcript! "+str(messageId))
+    os.system('python uploader.py ./static/messages/'+messageId+'.json '+messageId+'.json &')
+
 
 import sys
 mid = sys.argv[1]

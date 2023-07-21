@@ -3,6 +3,7 @@ import boto.s3
 import sys
 from boto.s3.key import Key
 from decouple import config
+import sys
 
 
 AWS_ACCESS_KEY_ID  = config('AWS_ACCESS_KEY_ID')
@@ -19,21 +20,12 @@ def percent_cb(complete, total):
     sys.stdout.write('.')
     sys.stdout.flush()
 
-
-def uploadMessage(messageId):
-    wavfile = './static/messages/'+messageId+'.wav'
+def uploadMessage(fullfilepath, resfilename):
+    wavfile = fullfilepath
     k = Key(bucket)
-    k.key = messageId+'.wav'
+    k.key = resfilename
     k.set_contents_from_filename(wavfile,
         cb=percent_cb, num_cb=10)
+    print("all uploaded for "+str(resfilename))
 
-    transcript = './static/messages/'+messageId+'.json'
-    k2 = Key(bucket)
-    k2.key = messageId+'.json'
-    k2.set_contents_from_filename(transcript,
-        cb=percent_cb, num_cb=10)
-    print("all uploaded for "+str(messageId))
-
-import sys
-mid = sys.argv[1]
-uploadMessage(mid)
+uploadMessage(sys.argv[1], sys.argv[2])
