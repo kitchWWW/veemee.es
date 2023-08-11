@@ -29,12 +29,13 @@
                     <canvas class="waveformCanvas" id="canvasss" width="200" height="200"></canvas>
                     <br>
                     <div id="resArea" class="noShowOnLoad">
-                        <div id="uploadingDiv">uploading...</div>
-                        <div id="successDiv">uploaded!<br>share this link:
-                            <br><br>
-                            <a id="linkidDiv"></a>
-                            <br><br>
+                        <div id="uploadingDiv">uploading<span id="loadingDots"></span></div>
+                        <div id="successDiv">uploaded!
+                            <br>
+                            <br>
                             <button onclick="share()">send veemee</button>
+                            <br><br>
+                            <div id="afterShareMessage"></div>
                         </div>
                     </div>
                 </div>

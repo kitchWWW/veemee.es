@@ -68,7 +68,6 @@ function copyToClipboard(string) {
   return true;
 }
 
-
 function formatAsTime(secs) {
   var sec_num = parseInt(secs, 10); // don't forget the second param
   var hours = Math.floor(sec_num / 3600);
@@ -97,10 +96,11 @@ var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
 
 var uploadingDiv = document.getElementById("uploadingDiv");
+var loadingDots = document.getElementById("loadingDots");
 var successDiv = document.getElementById("successDiv");
-var linkidDiv = document.getElementById("linkidDiv");
 var timestampDiv = document.getElementById("recordingtimestamp")
 var resArea = document.getElementById("resArea")
+var afterShareMessage = document.getElementById("afterShareMessage")
 
 uploadingDiv.style.display = "none"
 successDiv.style.display = "none"
@@ -280,9 +280,18 @@ function pauseRecording() {
   }
 }
 
+var dotCount = 1
+function startDots() {
+  loadingDots.innerHTML = "."
+  setInterval(function() {
+    dotCount += 1
+    loadingDots.innerHTML = "." * ((dotCount % 3) + 1)
+  }, 1000)
+}
+
 function stopRecording() {
   uploadingDiv.style.display = "block"
-
+  startDots()
   console.log("stopButton clicked");
 
   //disable the stop button, enable the record too allow for new recordings
@@ -320,8 +329,6 @@ function doUpload(blob, filename) {
       successDiv.style.display = "block"
       res = JSON.parse(e.target.responseText)
       viewingURL = window.location.href + "view?id=" + res['messageid']
-      linkidDiv.innerHTML = viewingURL
-      linkidDiv.href = viewingURL
       copyToClipboard(viewingURL)
     }
   };
@@ -339,9 +346,15 @@ function createDownloadLink(blob) {
 
 
 function share() {
-  navigator.share({
-    text: "yo, open this vm", // Text to be shared
-    url: viewingURL, // URL to be shared
-  // files: [] // An array of File objects to be shared
-  })
+  try {
+    navigator.share({
+      text: "yo, open this vm", // Text to be shared
+      url: viewingURL, // URL to be shared
+    // files: [] // An array of File objects to be shared
+    })
+    afterShareMessage.innerHTML = "shared, click to send again!"
+  } catch ( e ) {
+    copyToClipboard(viewingURL)
+    afterShareMessage.innerHTML = "coppied to clipboard!"
+  }
 }
