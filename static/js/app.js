@@ -95,6 +95,7 @@ var recordButton = document.getElementById("recordButton");
 var stopButton = document.getElementById("stopButton");
 var pauseButton = document.getElementById("pauseButton");
 
+var canvasss = document.getElementById("canvasss");
 var uploadingDiv = document.getElementById("uploadingDiv");
 var loadingDots = document.getElementById("loadingDots");
 var successDiv = document.getElementById("successDiv");
@@ -291,6 +292,7 @@ function startDots() {
 
 function stopRecording() {
   uploadingDiv.style.display = "block"
+  canvasss.style.display = "none"
   startDots()
   console.log("stopButton clicked");
 
