@@ -329,7 +329,6 @@ function doUpload(blob, filename) {
       successDiv.style.display = "block"
       res = JSON.parse(e.target.responseText)
       viewingURL = window.location.href + "view?id=" + res['messageid']
-      copyToClipboard(viewingURL)
     }
   };
   var fd = new FormData();
