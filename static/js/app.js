@@ -285,7 +285,7 @@ function startDots() {
   loadingDots.innerHTML = "."
   setInterval(function() {
     dotCount += 1
-    loadingDots.innerHTML = "." * ((dotCount % 3) + 1)
+    loadingDots.innerHTML = ".".repeat(((dotCount % 3) + 1))
   }, 1000)
 }
 
