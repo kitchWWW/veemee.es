@@ -102,6 +102,8 @@ var successDiv = document.getElementById("successDiv");
 var timestampDiv = document.getElementById("recordingtimestamp")
 var resArea = document.getElementById("resArea")
 var afterShareMessage = document.getElementById("afterShareMessage")
+var newveemee = document.getElementById("newveemee")
+
 
 uploadingDiv.style.display = "none"
 successDiv.style.display = "none"
@@ -111,7 +113,7 @@ resArea.style.display = "block"
 recordButton.addEventListener("click", startRecording);
 stopButton.addEventListener("click", stopRecording);
 pauseButton.addEventListener("click", pauseRecording);
-
+newveemee.addEventListener("click", startNewVeemee);
 
 recordButton.disabled = false;
 stopButton.disabled = true;
@@ -125,6 +127,10 @@ pauseButton.style.display = 'none'
 timeSoFar = 0
 startTimeOfCurrentSection = 0
 isRecording = false
+
+function startNewVeemee() {
+  location.reload();
+}
 
 setInterval(function() {
   timeToDisplay = ""
@@ -329,6 +335,7 @@ function doUpload(blob, filename) {
       console.log("Server returned: ", e.target.responseText);
       uploadingDiv.style.display = "none"
       successDiv.style.display = "block"
+      newveemee.style.display = "block"
       res = JSON.parse(e.target.responseText)
       viewingURL = window.location.href + "view?id=" + res['messageid']
     }
